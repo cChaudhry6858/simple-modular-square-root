@@ -28,3 +28,10 @@ The trade-off: input validation checks that `p` is odd and greater than 2, but d
 
 - `modular_sqrt(a, p)` — returns `int` or `None`.
 - `is_quadratic_residue(a, p)` — returns `bool`.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
